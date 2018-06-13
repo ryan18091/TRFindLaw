@@ -62,7 +62,7 @@ public class FindALawyerIntentHandler implements RequestHandler {
 
 
 //            speechText = String.format("You are all set to find a lawyer in %s.", nearestLawyer.toString());
-            speechText = String.format("I recommend %s, <break time=\".5s\"/> with the firm %s.<break time=\".5s\"/>  They are located in %s",
+            speechText = String.format("I recommend %s, <break time=\".5s\"/> with the firm %s.<break time=\".5s\"/>  They are located in %s.",
                     nearestLawyer.getFirst_name() + ' ' + nearestLawyer.getLast_name(), nearestLawyer.getFirm_name(),
                     nearestLawyer.getCity() + ' ' + nearestLawyer.getState());
 

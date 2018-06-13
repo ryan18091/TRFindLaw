@@ -58,8 +58,8 @@ public class MyZipcodeIsIntentHandler implements RequestHandler {
             speechText =
                     String.format("I now know that your zipcode is <say-as interpret-as=\"address\">%s</say-as>." +
                             " You can change your zipcode at any time by saying reset my zipcode is " +
-                            "<break time=\".5s\"/> followed by your zipcode. ?" +
-                            "To find a legal help in your area, say, find me a legal help", zipcode);
+                            "<break time=\".5s\"/> followed by your zipcode." +
+                            " <break time=\".5s\"/>To find a legal help in your area, say, find me legal help", zipcode);
             repromptText =
                     "You can ask me your zipcode is set to by saying, what's my zipcode?";
 
@@ -75,6 +75,7 @@ public class MyZipcodeIsIntentHandler implements RequestHandler {
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
         responseBuilder.withSpeech(speechText)
+                .withReprompt(repromptText)
                 .withShouldEndSession(false);
 
         if (isAskResponse) {
