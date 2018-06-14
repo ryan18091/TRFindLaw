@@ -14,15 +14,18 @@
 package com.amazon.ask.FindLawSkill.handlers;
 
 import com.amazon.ask.FindLawSkill.Lawyer;
+import com.amazon.ask.FindLawSkill.Template3;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.interfaces.display.Image;
+import com.amazon.ask.model.interfaces.display.Template;
 import com.amazon.ask.response.ResponseBuilder;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.COLOR_KEY;
+import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.ZIPCODE_KEY;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class FindALawyerIntentHandler implements RequestHandler {
@@ -38,7 +41,8 @@ public class FindALawyerIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         String speechText;
-        String zipcode = (String) input.getAttributesManager().getSessionAttributes().get(COLOR_KEY);
+        Template template = null;
+        String zipcode = (String) input.getAttributesManager().getSessionAttributes().get(ZIPCODE_KEY);
 
 
         if (zipcode != null && !zipcode.isEmpty()){
@@ -49,7 +53,9 @@ public class FindALawyerIntentHandler implements RequestHandler {
 
             List<Lawyer> lawyerList = lawyer.csvToLawyerList();
             Lawyer nearestLawyer = new Lawyer();
-            int nearestLawyerDistance = 2000;
+            int nearestLawyerDistance = 60000;
+
+
 
 
             for(Lawyer l : lawyerList) {
@@ -60,22 +66,53 @@ public class FindALawyerIntentHandler implements RequestHandler {
                 }
             }
 
+            String title = nearestLawyer.getFirst_name() + ' ' + nearestLawyer.getLast_name();
+            String primaryText = nearestLawyer.getFirst_name();
+            String secondaryText = nearestLawyer.getWeb();
+            String imageUrl = nearestLawyer.getPhone2();
+
+            Template3 template3 = new Template3();
+
+            Image image = template3.getImage(imageUrl);
+
+            template = template3.getBodyTemplate3(title, primaryText, secondaryText, image);
+
+
+
+
 
 //            speechText = String.format("You are all set to find a lawyer in %s.", nearestLawyer.toString());
-            speechText = String.format("I recommend %s, <break time=\".5s\"/> with the firm %s.<break time=\".5s\"/>  They are located in %s.",
-                    nearestLawyer.getFirst_name() + ' ' + nearestLawyer.getLast_name(), nearestLawyer.getFirm_name(),
-                    nearestLawyer.getCity() + ' ' + nearestLawyer.getState());
+            speechText = String.format("I recommend %s, with the firm %s. They are located in %s.",
+                    nearestLawyer.getFirst_name(), nearestLawyer.getFirm_name(),
+                    nearestLawyer.getCity());
 
 
         } else {
             speechText = "I can sure help you with that. To find the legal help near you, I will need the zipcode" +
-                    " where you want to receive legal help. Start by  saying  <break time=\".5s\"/> my zipcode is <break time=\".5s\"/>" +
+                    " where you want to receive legal help. Start by  saying  <break time=\".5s\"/> my zipcode is <break time=\"1s\"/>" +
                     " followed by your zipcode.";
+
+            String title = "Welcome to Find Law";
+            String primaryText = null;
+            String secondaryText = null;
+            String imageUrl = "https://www.findlawimages.com/public/thumbnails_62x62/findlaw_62x62.png";
+
+            Template3 template3 = new Template3();
+
+            Image image = template3.getImage(imageUrl);
+
+
+            template = template3.getBodyTemplate3(title, primaryText, secondaryText, image);
+
+
+
         }
 
         ResponseBuilder responseBuilder = input.getResponseBuilder();
 
+
         responseBuilder.withSpeech(speechText)
+                .addRenderTemplateDirective(template)
                 .withShouldEndSession(false);
 
         return responseBuilder.build();

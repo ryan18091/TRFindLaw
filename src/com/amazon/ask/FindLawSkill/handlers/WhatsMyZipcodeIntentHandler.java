@@ -22,8 +22,8 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class WhatsMyZipcodeIntentHandler implements RequestHandler {
-    public static final String COLOR_KEY = "COLOR";
-    public static final String COLOR_SLOT = "Color";
+    public static final String ZIPCODE_KEY = "ZIPCODE";
+    public static final String ZIPCODE_SLOT = "Zipcode";
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -33,7 +33,7 @@ public class WhatsMyZipcodeIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String speechText;
-        String zipcode = (String) input.getAttributesManager().getSessionAttributes().get(COLOR_KEY);
+        String zipcode = (String) input.getAttributesManager().getSessionAttributes().get(ZIPCODE_KEY);
 
         if (zipcode != null && !zipcode.isEmpty()) {
             speechText = String.format("Your zipcode is <say-as interpret-as=\"address\">%s</say-as>.", zipcode);

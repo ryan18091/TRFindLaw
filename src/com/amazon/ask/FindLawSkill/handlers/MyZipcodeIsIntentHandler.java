@@ -23,8 +23,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.COLOR_KEY;
-import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.COLOR_SLOT;
+import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.ZIPCODE_KEY;
+import static com.amazon.ask.FindLawSkill.handlers.WhatsMyZipcodeIntentHandler.ZIPCODE_SLOT;
 
 public class MyZipcodeIsIntentHandler implements RequestHandler {
     @Override
@@ -40,8 +40,7 @@ public class MyZipcodeIsIntentHandler implements RequestHandler {
         Map<String, Slot> slots = intent.getSlots();
 
         // Get the color slot from the list of slots.
-        Slot zipcodeSlot = slots.get(COLOR_SLOT);
-
+        Slot zipcodeSlot = slots.get(ZIPCODE_SLOT);
 
 
 
@@ -53,7 +52,7 @@ public class MyZipcodeIsIntentHandler implements RequestHandler {
         if (zipcodeSlot != null) {
             // Store the user's favorite color in the Session and create response.
             String zipcode = zipcodeSlot.getValue();
-            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(COLOR_KEY, zipcode));
+            input.getAttributesManager().setSessionAttributes(Collections.singletonMap(ZIPCODE_KEY, zipcode));
 
             speechText =
                     String.format("I now know that your zipcode is <say-as interpret-as=\"address\">%s</say-as>." +

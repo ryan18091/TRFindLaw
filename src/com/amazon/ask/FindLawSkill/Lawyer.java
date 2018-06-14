@@ -139,6 +139,7 @@ public class Lawyer {
         this.web = web;
     }
 
+
     @Override
     public String toString() {
         return "Lawyer{" +
@@ -168,7 +169,7 @@ public class Lawyer {
         List<Lawyer> lawyerList = new ArrayList<Lawyer>();
         try {
             //Reading the csv file, V2 removed rows with extra commas in names causing parsing error
-            br = new BufferedReader(new FileReader("AttorneysForAlexa.csv"));
+            br = new BufferedReader(new FileReader("AttorneysforAlexa.csv"));
 
 //            //Create List for holding Employee objects
 //            List<Lawyer> lawyerList = new ArrayList<Lawyer>();
@@ -181,6 +182,7 @@ public class Lawyer {
                 String[] LawyerDetails = line.split(COMMA_DELIMITER);
 
                 if (LawyerDetails.length > 0) {
+                    System.out.println("Creating Object");
                     //Save the employee details in Employee object
                     Lawyer emp = new Lawyer(LawyerDetails[0],
                             LawyerDetails[1], LawyerDetails[2],
@@ -192,6 +194,9 @@ public class Lawyer {
                     lawyerList.add(emp);
                 }
             }
+
+            System.out.println(lawyerList.size());
+            System.out.println(lawyerList.get(0).getFirm_name());
 
 
             //Lets print the Employee List
