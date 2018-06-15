@@ -67,7 +67,7 @@ public class FindALawyerIntentHandler implements RequestHandler {
             }
 
             String title = nearestLawyer.getFirst_name() + ' ' + nearestLawyer.getLast_name();
-            String primaryText = nearestLawyer.getFirst_name();
+            String primaryText = nearestLawyer.getFirm_name();
             String secondaryText = nearestLawyer.getWeb();
             String imageUrl = nearestLawyer.getPhone2();
 
