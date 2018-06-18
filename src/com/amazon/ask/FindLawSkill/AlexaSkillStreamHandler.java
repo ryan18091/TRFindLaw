@@ -14,6 +14,7 @@
 package com.amazon.ask.FindLawSkill;
 
 import com.amazon.ask.FindLawSkill.handlers.*;
+import com.amazon.ask.FindLawSkill.handlers.CriminalProcedure.*;
 import com.amazon.ask.FindLawSkill.handlers.DUI.BUI.*;
 import com.amazon.ask.FindLawSkill.handlers.DUI.DUItrafficStops.*;
 import com.amazon.ask.Skill;
@@ -48,7 +49,14 @@ public class AlexaSkillStreamHandler extends SkillStreamHandler {
                         new BUISixIntentHandler(),
                         new BUISevenIntentHandler(),
                         new BUIEightIntentHandler(),
-                        new BUINineIntentHandler())
+                        new BUINineIntentHandler(),
+                        new CriminalProcedureOneHandler(),
+                        new CriminalProcedureTwoHandler(),
+                        new CriminalProcedureThreeHandler(),
+                        new CriminalProcedureFourHandler(),
+                        new CriminalProcedureFiveHandler(),
+                        new CriminalProcedureSixHandler(),
+                        new CriminalProcedureSevenHandler())
 //                        new WhatsMyZipcodeIntentHandler())
                 // Add your skill id below
                 //.withSkillId("")

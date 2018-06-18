@@ -38,8 +38,8 @@ public class LaunchRequestHandler implements RequestHandler {
         String title = "";
         String primaryText = "";
         String secondaryText = "provide by FindLaw.com";
-        String speechText = "Welcome to Find Law, I can help you with your legal questions or find legal help near you. <break time=\".5s\"/> " +
-                "Please say, ask a question or say get legal help.";
+        String speechText = "Welcome to Find Law, I can help you with your legal questions or I can help you find legal " +
+                "help near you. <break time=\".5s\"/> Please say, ask a question or say get legal help.";
         String imageUrl = "https://www.findlawimages.com/latl/findlaw.png";
 
         Template3 template3 = new Template3();
