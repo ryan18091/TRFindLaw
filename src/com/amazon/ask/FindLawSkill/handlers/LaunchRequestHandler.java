@@ -36,6 +36,7 @@ public class LaunchRequestHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         String title = "";
+        String primaryText = "";
         String secondaryText = "provide by FindLaw.com";
         String speechText = "Welcome to Find Law, I can help you with your legal questions or find legal help near you. <break time=\".5s\"/> " +
                 "Please say, ask a question or say get legal help.";
@@ -45,12 +46,12 @@ public class LaunchRequestHandler implements RequestHandler {
 
         Image image = template3.getImage(imageUrl);
 
-        Template template = template3.getBodyTemplate3(title, speechText, secondaryText, image);
+        Template template = template3.getBodyTemplate3(title, primaryText, secondaryText, image);
 
 
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .addRenderTemplateDirective(template)
+//                .addRenderTemplateDirective(template)
                 .withReprompt(speechText)
                 .build();
     }

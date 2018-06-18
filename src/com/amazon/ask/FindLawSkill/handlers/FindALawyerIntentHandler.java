@@ -93,8 +93,8 @@ public class FindALawyerIntentHandler implements RequestHandler {
                     " followed by your zipcode.";
 
             String title = "Welcome to Find Law";
-            String primaryText = null;
-            String secondaryText = null;
+            String primaryText = "";
+            String secondaryText = "";
             String imageUrl = "https://www.findlawimages.com/public/thumbnails_62x62/findlaw_62x62.png";
 
             Template3 template3 = new Template3();
@@ -112,11 +112,13 @@ public class FindALawyerIntentHandler implements RequestHandler {
 
 
         responseBuilder.withSpeech(speechText)
-                .addRenderTemplateDirective(template)
                 .withShouldEndSession(false);
 
         return responseBuilder.build();
     }
 
 }
+
+
+
 

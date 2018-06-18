@@ -14,9 +14,8 @@
 package com.amazon.ask.FindLawSkill;
 
 import com.amazon.ask.FindLawSkill.handlers.*;
-import com.amazon.ask.FindLawSkill.handlers.DUI.DUItrafficStops.DUItrafficStopOneIntentHandler;
-import com.amazon.ask.FindLawSkill.handlers.DUI.DUItrafficStops.DUItrafficStopThreeIntentHandler;
-import com.amazon.ask.FindLawSkill.handlers.DUI.DUItrafficStops.DUItrafficStopTwoeIntentHandler;
+import com.amazon.ask.FindLawSkill.handlers.DUI.BUI.*;
+import com.amazon.ask.FindLawSkill.handlers.DUI.DUItrafficStops.*;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
@@ -35,8 +34,21 @@ public class AlexaSkillStreamHandler extends SkillStreamHandler {
                         new MyZipcodeIsIntentHandler(),
                         new FallBackIntentHandler(),
                         new DUItrafficStopOneIntentHandler(),
-                        new DUItrafficStopTwoeIntentHandler(),
-                        new DUItrafficStopThreeIntentHandler())
+                        new DUItrafficStopTwoIntentHandler(),
+                        new DUItrafficStopThreeIntentHandler(),
+                        new DUItrafficStopFourIntentHandler(),
+                        new DUItrafficStopFiveIntentHandler(),
+                        new DUItrafficStopSixIntentHandler(),
+                        new DUItrafficStopSevenIntentHandler(),
+                        new BUIOneIntentHandler(),
+                        new BUITwoIntentHandler(),
+                        new BUIThreeIntentHandler(),
+                        new BUIFourIntentHandler(),
+                        new BUIFiveIntentHandler(),
+                        new BUISixIntentHandler(),
+                        new BUISevenIntentHandler(),
+                        new BUIEightIntentHandler(),
+                        new BUINineIntentHandler())
 //                        new WhatsMyZipcodeIntentHandler())
                 // Add your skill id below
                 //.withSkillId("")

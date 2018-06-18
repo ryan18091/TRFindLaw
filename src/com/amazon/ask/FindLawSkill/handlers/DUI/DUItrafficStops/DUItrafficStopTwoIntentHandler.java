@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class DUItrafficStopTwoeIntentHandler implements RequestHandler{
+public class DUItrafficStopTwoIntentHandler implements RequestHandler{
 
     @Override
     public boolean canHandle(HandlerInput input) {

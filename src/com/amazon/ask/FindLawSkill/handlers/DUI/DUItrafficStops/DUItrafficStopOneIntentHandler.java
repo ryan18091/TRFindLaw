@@ -22,7 +22,7 @@ public class DUItrafficStopOneIntentHandler  implements RequestHandler{
     public Optional<Response> handle(HandlerInput input) {
 
         String title = "DUI information";
-        String primaryText = null;
+        String primaryText = "";
         String secondaryText = "Ask another question, or ask for legal help";
 
         String speechText = "In general, it is illegal for you to drive while you are \"impaired\" by drugs or alcohol." +
@@ -44,7 +44,7 @@ public class DUItrafficStopOneIntentHandler  implements RequestHandler{
         Template template = template3.getBodyTemplate3(title, speechText, secondaryText, image);
 
         return input.getResponseBuilder()
-                .withSimpleCard("DUI", speechText)
+//                .withSimpleCard("DUI", speechText)
                 .withSpeech(speechText)
                 .withReprompt(speechText)
                 .build();
