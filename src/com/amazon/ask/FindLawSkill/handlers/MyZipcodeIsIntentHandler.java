@@ -48,17 +48,17 @@ public class MyZipcodeIsIntentHandler implements RequestHandler {
 
         boolean isAskResponse = false;
 
-        // Check for favorite color and create output to user.
+        // Check for zipcode and create output to user.
         if (zipcodeSlot != null) {
-            // Store the user's favorite color in the Session and create response.
+            // Store the user's zipcode in the Session and create response.
             String zipcode = zipcodeSlot.getValue();
             input.getAttributesManager().setSessionAttributes(Collections.singletonMap(ZIPCODE_KEY, zipcode));
 
             speechText =
                     String.format("I now know that your zipcode is <say-as interpret-as=\"address\">%s</say-as>." +
-                            " You can change your zipcode at any time by saying reset my zipcode is " +
+                            " You can change your zipcode at any time by saying reset my zipcode " +
                             "<break time=\".5s\"/> followed by your zipcode." +
-                            " <break time=\".5s\"/>To find a legal help in your area, say, find me legal help", zipcode);
+                            " <break time=\".5s\"/>To find legal help in your area, say, find me legal help", zipcode);
             repromptText =
                     "You can ask me your zipcode is set to by saying, what's my zipcode?";
 

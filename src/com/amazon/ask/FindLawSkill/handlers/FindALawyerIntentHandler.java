@@ -20,7 +20,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.interfaces.display.Image;
 import com.amazon.ask.model.interfaces.display.Template;
-import com.amazon.ask.response.ResponseBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -86,6 +85,23 @@ public class FindALawyerIntentHandler implements RequestHandler {
                     nearestLawyer.getFirst_name(), nearestLawyer.getFirm_name(),
                     nearestLawyer.getCity());
 
+            // Device supports display interface
+            if(null!=input.getRequestEnvelope().getContext().getDisplay()) {
+                return input.getResponseBuilder()
+                        .withSpeech(speechText)
+                        .withSimpleCard(title, speechText)
+                        .addRenderTemplateDirective(template)
+                        .withReprompt(speechText)
+                        .build();
+            } else {
+                // Headless device
+                return input.getResponseBuilder()
+                        .withSpeech(speechText)
+                        .withSimpleCard(title, speechText)
+                        .withReprompt(speechText)
+                        .build();
+            }
+
 
         } else {
             speechText = "I can sure help you with that. To find the legal help near you, I will need the zipcode" +
@@ -104,17 +120,35 @@ public class FindALawyerIntentHandler implements RequestHandler {
 
             template = template3.getBodyTemplate3(title, primaryText, secondaryText, image);
 
+            // Device supports display interface
+            if(null!=input.getRequestEnvelope().getContext().getDisplay()) {
+                return input.getResponseBuilder()
+                        .withSpeech(speechText)
+                        .withSimpleCard(title, speechText)
+                        .addRenderTemplateDirective(template)
+                        .withReprompt(speechText)
+                        .build();
+            } else {
+                // Headless device
+                return input.getResponseBuilder()
+                        .withSpeech(speechText)
+                        .withSimpleCard(title, speechText)
+                        .withReprompt(speechText)
+                        .build();
+            }
+
 
 
         }
 
-        ResponseBuilder responseBuilder = input.getResponseBuilder();
+//        ResponseBuilder responseBuilder = input.getResponseBuilder();
 
+//
+//        responseBuilder.withSpeech(speechText)
+//                .withShouldEndSession(false);
+//
+//        return responseBuilder.build();
 
-        responseBuilder.withSpeech(speechText)
-                .withShouldEndSession(false);
-
-        return responseBuilder.build();
     }
 
 }

@@ -17,6 +17,11 @@ public class DUItrafficStopTwoIntentHandler implements RequestHandler{
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
+        String title = "DUI information";
+        String primaryText = "";
+        String secondaryText = "Ask another question, or ask for legal help";
+
         String speechText = "In general, police have three different methods of figuring out whether or not a driver is under the influence:\n" +
                 "\n" +
                 "1. Observing erratic driving -In general, police officers will pull you over if they notice that you" +
@@ -41,7 +46,7 @@ public class DUItrafficStopTwoIntentHandler implements RequestHandler{
                 " attorneys base their drunk driving defense on challenging the mathematical formula used in the tests.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withReprompt(speechText)
+                .withReprompt(secondaryText)
                 .build();
     }
 }

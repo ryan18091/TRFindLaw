@@ -40,7 +40,7 @@ public class DUItrafficStopFourIntentHandler implements RequestHandler{
         return input.getResponseBuilder()
 //                .withSimpleCard("DUI", speechText)
                 .withSpeech(speechText)
-                .withReprompt(speechText)
+                .withReprompt(secondaryText)
                 .build();
     }
 }

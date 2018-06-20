@@ -11,11 +11,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class DUItrafficStopSevenIntentHandler implements RequestHandler{
+public class DUItrafficStopEightIntentHandler implements RequestHandler{
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("DUItrafficStopSeven"));
+        return input.matches(intentName("DUItrafficStopEight"));
     }
 
     @Override
@@ -25,10 +25,9 @@ public class DUItrafficStopSevenIntentHandler implements RequestHandler{
         String primaryText = "";
         String secondaryText = "Ask another question, or ask to find legal help";
 
-        String speechText = "Having an attorney review your case is probably the best way to protect your rights and" +
-                " get the best possible outcome after a DUI arrest. And since attorneys are not cheap, you might want" +
-                " to start out by having a qualified DUI attorney give you free feedback about your case before you " +
-                "enter into a contract.";
+        String speechText = "It’s a free country and you can do more or less what you want. But if you’re driving, " +
+                "that is a privilege and it comes with certain obligations. Among them is implied consent to taking the " +
+                "breath test and failure to do so will have consequences.";
 
         String imageUrl = "https://www.findlawimages.com/latl/findlaw.png";
 
